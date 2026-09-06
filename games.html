@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>git-hub - Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #121212;
+    --bg-darker: #0c0c0c;
+    --bar-grey: #1c1c1c;
+    --grey-light: #2a2a2a;
+    --grey-border: #333333;
+    --text-light: #e6e6e6;
+    --text-muted: #9a9a9a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Silkscreen', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-darker);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--grey-border);
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+
+  .search-container {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+  }
+
+  .search-container input {
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--grey-border);
+    background-color: var(--grey-light);
+    color: var(--text-light);
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .search-container input::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Secondary nav bar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bar-grey);
+    border-bottom: 1px solid var(--grey-border);
+    padding: 0 10px;
+  }
+
+  .nav-arrow {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    padding: 10px 8px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 12px 6px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .nav-links a svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: var(--text-light);
+  }
+
+  /* Page content */
+  .page-content {
+    padding: 30px 20px 60px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0 0 20px;
+    color: var(--text-light);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background-color: var(--bar-grey);
+    border: 1px solid var(--grey-border);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--text-muted);
+  }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: var(--grey-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-thumb svg {
+    width: 36px;
+    height: 36px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .card-label {
+    padding: 10px 10px 12px;
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="logo">git-hub</div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search games...">
+    </div>
+
+  </div>
+
+  <!-- Secondary nav bar -->
+  <div class="navbar">
+    <button class="nav-arrow">&#10094;</button>
+    <div class="nav-links">
+      <a href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Home
+      </a>
+      <a href="games.html" class="active">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/><circle cx="6" cy="10.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="6" cy="15.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        Games
+      </a>
+      <a href="movies.html">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8"/><path d="M12 18v2"/></svg>
+        Movies
+      </a>
+    </div>
+    <button class="nav-arrow">&#10095;</button>
+  </div>
+
+  <!-- Page content -->
+  <div class="page-content">
+    <h2 class="section-title">ALL GAMES</h2>
+    <div class="card-grid">
+      <a href="play/clworldshardestgame.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">World&#x27;s Hardest Game</div>
+      </a>
+      <a href="play/clworldshardestgame2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">World&#x27;s Hardest Game 2</div>
+      </a>
+      <a href="play/clworldshardestgame3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">World&#x27;s Hardest Game 3</div>
+      </a>
+      <a href="play/clslope.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Slope</div>
+      </a>
+      <a href="play/clslope3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Slope 3</div>
+      </a>
+      <a href="play/clslopeplus.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Slope Plus</div>
+      </a>
+      <a href="play/clsubwaysurfersmiami.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Subway Surfers Miami</div>
+      </a>
+      <a href="play/clsubwaysurfersberlin.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Subway Surfers Berlin</div>
+      </a>
+      <a href="play/clsubwaysurfershavana.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Subway Surfers Havana</div>
+      </a>
+      <a href="play/cltemplerun2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Temple Run 2</div>
+      </a>
+      <a href="play/cl2048.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">2048</div>
+      </a>
+      <a href="play/cl2048cupcakes.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">2048 Cupcakes</div>
+      </a>
+      <a href="play/clGeometryDashWave.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Geometry Dash Wave</div>
+      </a>
+      <a href="play/clgeometrydashscratch.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Geometry Dash Scratch</div>
+      </a>
+      <a href="play/clfireboyandwatergirl.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Fireboy and Watergirl</div>
+      </a>
+      <a href="play/clfireboyandwatergirl2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Fireboy and Watergirl 2</div>
+      </a>
+      <a href="play/clfireboyandwatergirl3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Fireboy and Watergirl 3</div>
+      </a>
+      <a href="play/clpapastacomia.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Papa&#x27;s Tacomia</div>
+      </a>
+      <a href="play/clpapaspastaria.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Papa&#x27;s Pastaria</div>
+      </a>
+      <a href="play/clpapassushiria.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Papa&#x27;s Sushiria</div>
+      </a>
+      <a href="play/clcuttherope.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Cut the Rope</div>
+      </a>
+      <a href="play/clcuttheropeholiday.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Cut the Rope Holiday</div>
+      </a>
+      <a href="play/clcuttheropetimetravel.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Cut the Rope Timetravel</div>
+      </a>
+      <a href="play/clvex.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Vex</div>
+      </a>
+      <a href="play/clvex2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Vex 2</div>
+      </a>
+      <a href="play/clvex3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Vex 3</div>
+      </a>
+      <a href="play/clredball.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Red Ball</div>
+      </a>
+      <a href="play/clredball2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Red Ball 2</div>
+      </a>
+      <a href="play/clredball3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Red Ball 3</div>
+      </a>
+      <a href="play/cltetris.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Tetris</div>
+      </a>
+      <a href="play/cltetrisgba.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Tetris GBA</div>
+      </a>
+      <a href="play/cltetrisattack.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Tetris Attack</div>
+      </a>
+      <a href="play/clbloons.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Bloons</div>
+      </a>
+      <a href="play/clbloons2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Bloons 2</div>
+      </a>
+      <a href="play/clbloonspp1.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Bloons Player Pack 1</div>
+      </a>
+      <a href="play/clFNAF.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Five Nights at Freddy&#x27;s</div>
+      </a>
+      <a href="play/clFNAF2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Five Nights at Freddy&#x27;s 2</div>
+      </a>
+      <a href="play/clFNAF3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Five Nights at Freddy&#x27;s 3</div>
+      </a>
+      <a href="play/clsonicr.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Sonic R</div>
+      </a>
+      <a href="play/clsoniccd.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Sonic CD</div>
+      </a>
+      <a href="play/clsonicgg.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Sonic Genesis</div>
+      </a>
+      <a href="play/clmario3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Mario 3</div>
+      </a>
+      <a href="play/cldrmario.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Dr. Mario</div>
+      </a>
+      <a href="play/clcatmario.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Cat Mario</div>
+      </a>
+      <a href="play/clpokemongold.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Pokemon Gold</div>
+      </a>
+      <a href="play/clpokemonruby.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Pokemon Ruby</div>
+      </a>
+      <a href="play/clpokemonsnap.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Pokemon Snap</div>
+      </a>
+      <a href="play/clZeldaIndigoch2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Zelda: Indigo Ch. 2</div>
+      </a>
+      <a href="play/clzeldaminishcap.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Zelda: Minish Cap</div>
+      </a>
+      <a href="play/clzelda2thelegendoflink.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Zelda II: The Legend of Link</div>
+      </a>
+      <a href="play/cl1v1lol.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">1v1.LOL</div>
+      </a>
+      <a href="play/clbasketballlegends1.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Basketball Legends</div>
+      </a>
+      <a href="play/clstickmanduel.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Stickman Duel</div>
+      </a>
+      <a href="play/clstickmanhook.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Stickman Hook</div>
+      </a>
+      <a href="play/clstickmanclash.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Stickman Clash</div>
+      </a>
+      <a href="play/clrooftopsnipers.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Rooftop Snipers</div>
+      </a>
+      <a href="play/clrooftopsnipers2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Rooftop Snipers 2</div>
+      </a>
+      <a href="play/clonlyup.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Only Up</div>
+      </a>
+      <a href="play/clobbyonlyup.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Only Up: Obby</div>
+      </a>
+      <a href="play/clgoogledino.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Dino Runner</div>
+      </a>
+      <a href="play/clpacman.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Pac-Man</div>
+      </a>
+      <a href="play/clpacmana.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Pac-Man Advanced</div>
+      </a>
+      <a href="play/clmspacman_1.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Ms. Pac-Man</div>
+      </a>
+      <a href="play/clsnakeis.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Snake.is</div>
+      </a>
+      <a href="play/clsnakelike.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Snake-Like</div>
+      </a>
+      <a href="play/clblockysnakes.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Blocky Snakes</div>
+      </a>
+      <a href="play/clchess.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Chess</div>
+      </a>
+      <a href="play/clmegachess.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Mega Chess</div>
+      </a>
+      <a href="play/clchessclassic.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Chess Classic</div>
+      </a>
+      <a href="play/cl8ballpool.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">8 Ball Pool</div>
+      </a>
+      <a href="play/clmotox3m2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Moto X3M 2</div>
+      </a>
+      <a href="play/clmotox3m3.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Moto X3M 3</div>
+      </a>
+      <a href="play/clmotox3mm.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Moto X3M Pool Party</div>
+      </a>
+      <a href="play/clcrossyroad.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Crossy Road</div>
+      </a>
+      <a href="play/clfruitninja.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Fruit Ninja</div>
+      </a>
+      <a href="play/clangrybirds.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Angry Birds</div>
+      </a>
+      <a href="play/clangrybirds2.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Angry Birds 2</div>
+      </a>
+      <a href="play/clangry-birdsspace.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Angry Birds Space</div>
+      </a>
+      <a href="play/cldriftboss.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Drift Boss</div>
+      </a>
+      <a href="play/clracingarena.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Racing Arena</div>
+      </a>
+      <a href="play/cl1on1soccer.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">1 on 1 Soccer</div>
+      </a>
+      <a href="play/clbasketballstars.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Basketball Stars</div>
+      </a>
+      <a href="play/clfootballbros.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Football Bros</div>
+      </a>
+      <a href="play/clretrobowl.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Retro Bowl</div>
+      </a>
+      <a href="play/clretrobowlcollege.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Retro Bowl College</div>
+      </a>
+      <a href="play/clbaseballnes.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Baseball (NES)</div>
+      </a>
+      <a href="play/cltanktrouble.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Tank Trouble</div>
+      </a>
+      <a href="play/clsmashkarts.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Smash Karts</div>
+      </a>
+      <a href="play/clsmashkartsworking.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Smash Karts (2)</div>
+      </a>
+      <a href="play/clsmashremix.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Smash Remix</div>
+      </a>
+      <a href="play/clBrawlstars.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Brawl Stars</div>
+      </a>
+      <a href="play/clhextris.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Hextris</div>
+      </a>
+      <a href="play/clflappybird.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Flappy Bird</div>
+      </a>
+      <a href="play/clhelixjump.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Helix Jump</div>
+      </a>
+      <a href="play/clstacktris.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Stacktris</div>
+      </a>
+      <a href="play/cldinorun.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Dino Run</div>
+      </a>
+      <a href="play/cldinorunenterplanetd.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Dino Run: Enter Planet D</div>
+      </a>
+      <a href="play/cldreadheadparkour.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Dreadhead Parkour</div>
+      </a>
+      <a href="play/clhappywheels.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Happy Wheels</div>
+      </a>
+      <a href="play/clplantsvszombies.html" class="card" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><line x1="9" y1="7" x2="9" y2="19"/></svg>
+        </div>
+        <div class="card-label">Plants vs Zombies</div>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
